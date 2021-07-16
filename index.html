@@ -5,21 +5,48 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Helix 360 View</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
+<div>
+    <select>
+        <option>Choose Color</option>
+        <option value="red">Red</option>
+        <option value="helix">Helix</option>
+        <option value="blue">Blue</option>
+    </select>
+  </div>
+  <div class="red box">You have selected <strong>red option</strong> so i am here</div>
 
-  <div class="wrapper">
-    <div class="container">
+  <div class="wrapper helix box">
 
-      <div
+      <div id="helix"
         class="cloudimage-360"
-        data-folder="images/"
+        data-folder="https://www.dropbox.com/sh/ggvv0hmhky5yioc/AACdgjorSCxOJ9XE8lnqEt-Pa?dl=0"
         data-filename="helix-{index}.png"
         data-amount="17">
       </div>
 
-    </div>
   </div>
-  <script src="js-cloudimage-360-view.min.js"></script>
+
+  <div class="green box">You have selected <strong>green option</strong> so i am here</div>
+  <div class="blue box">You have selected <strong>blue option</strong> so i am here</div>
+
+<script>
+  $(document).ready(function(){
+      $("select").change(function(){
+          $(this).find("option:selected").each(function(){
+              var optionValue = $(this).attr("value");
+              if(optionValue){
+                  $(".box").not("." + optionValue).hide();
+                  $("." + optionValue).show();
+              } else{
+                  $(".box").hide();
+              }
+          });
+      }).change();
+  });
+</script>
+<script src="js-cloudimage-360-view.min.js"></script>
 </body>
 </html>
